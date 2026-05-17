@@ -10,7 +10,29 @@ type Project = {
   tags: string[];
   url: string;
   highlight?: boolean;
+  status?: "In Progress" | "Shipped";
 };
+
+const IN_PROGRESS: Project[] = [
+  {
+    name: "llm-ops-dashboard",
+    description:
+      "A tiny, opinionated dashboard for the four things every LLM app eventually needs to measure: latency (p50/p95), cost, cache hit rate, and error budget — all behind a single proxy you drop in front of your model calls. The kind of artifact you ship to convince leadership a feature is healthy.",
+    tags: ["Applied AI", "Observability", "Next.js", "TypeScript", "SQLite"],
+    url: "https://github.com/arbies9/llm-ops-dashboard",
+    status: "In Progress",
+    highlight: true,
+  },
+  {
+    name: "State of LLM Evals (2026)",
+    description:
+      "A methodology-first deep-dive comparing Promptfoo, Braintrust, LangSmith, Inspect, and Ragas. Same workload through every tool, scored on a fixed rubric (dev ergonomics, CI, cost transparency, multi-model, output analysis, OSS posture). RFC-style writing, real recommendation at the end.",
+    tags: ["TPM", "Eval", "Technical Writing", "RFC"],
+    url: "https://github.com/arbies9/state-of-llm-evals",
+    status: "In Progress",
+    highlight: true,
+  },
+];
 
 const PROJECTS: Project[] = [
   {
@@ -115,34 +137,23 @@ export default function Page() {
         </div>
       </Section>
 
+      <Section id="in-progress" eyebrow="In Progress" title="Currently building — open scaffolds, real roadmaps.">
+        <p className="mb-8 max-w-3xl text-sm md:text-base leading-relaxed text-ink-100/80">
+          Two active projects I&apos;m scoping in public — one applied-AI build, one TPM-style
+          deep-dive. Repos are live; READMEs lay out the architecture, methodology, and a
+          versioned roadmap.
+        </p>
+        <div className="grid gap-6 md:grid-cols-2">
+          {IN_PROGRESS.map((p) => (
+            <ProjectCard key={p.name} project={p} />
+          ))}
+        </div>
+      </Section>
+
       <Section id="projects" eyebrow="Selected Work" title="Shipping intelligent tools — from spec to production.">
         <div className="grid gap-6 md:grid-cols-2">
           {PROJECTS.map((p) => (
-            <article
-              key={p.name}
-              className={`glass p-6 flex flex-col ${p.highlight ? "md:col-span-1" : "md:col-span-2"}`}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="text-xl font-semibold text-white min-w-0">{p.name}</h3>
-                <Link
-                  href={p.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="shrink-0 text-ink-300 hover:text-white transition-colors text-sm"
-                  aria-label={`Open ${p.name} on GitHub`}
-                >
-                  ↗
-                </Link>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-ink-100/85 flex-1">
-                {p.description}
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {p.tags.map((t) => (
-                  <span key={t} className="chip">{t}</span>
-                ))}
-              </div>
-            </article>
+            <ProjectCard key={p.name} project={p} />
           ))}
         </div>
       </Section>
@@ -183,6 +194,7 @@ function Nav() {
   const links = [
     { href: "#about", label: "About" },
     { href: "#focus", label: "Focus" },
+    { href: "#in-progress", label: "Now" },
     { href: "#projects", label: "Work" },
     { href: "#contact", label: "Contact" },
   ];
@@ -267,6 +279,46 @@ function Section({
         <div className="mt-10">{children}</div>
       </div>
     </section>
+  );
+}
+
+function ProjectCard({ project: p }: { project: Project }) {
+  return (
+    <article
+      className={`glass p-6 flex flex-col ${p.highlight ? "md:col-span-1" : "md:col-span-2"}`}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <h3 className="text-xl font-semibold text-white break-words">{p.name}</h3>
+          {p.status === "In Progress" && (
+            <span className="mt-2 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-ink-200/90 rounded-full bg-ink-700/40 border border-ink-300/30 px-2.5 py-1">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-ink-300 opacity-75 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-ink-200" />
+              </span>
+              In Progress
+            </span>
+          )}
+        </div>
+        <Link
+          href={p.url}
+          target="_blank"
+          rel="noreferrer"
+          className="shrink-0 text-ink-300 hover:text-white transition-colors text-sm"
+          aria-label={`Open ${p.name} on GitHub`}
+        >
+          ↗
+        </Link>
+      </div>
+      <p className="mt-3 text-sm leading-relaxed text-ink-100/85 flex-1">
+        {p.description}
+      </p>
+      <div className="mt-5 flex flex-wrap gap-2">
+        {p.tags.map((t) => (
+          <span key={t} className="chip">{t}</span>
+        ))}
+      </div>
+    </article>
   );
 }
 
