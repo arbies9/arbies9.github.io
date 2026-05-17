@@ -77,10 +77,60 @@ const FOCUS = [
     glyph: "◆",
   },
   {
-    title: "Technical Program Management",
+    title: "Secure & Cleared Engineering",
     body:
-      "Translating ambiguous product bets into shippable roadmaps. Aligning engineering, design, and stakeholders so the right thing gets built — and gets out the door.",
+      "Shipping in environments where reliability isn't a metric, it's the mission. TS/SCI with Full Scope Poly, comfortable under federal security constraints, and writing code that has to be audited as carefully as it ships.",
     glyph: "◈",
+  },
+];
+
+type Experience = {
+  company: string;
+  role: string;
+  location: string;
+  range: string;
+  yearLabel: string;
+  body: string;
+  current?: boolean;
+};
+
+const EXPERIENCE: Experience[] = [
+  {
+    company: "Accenture Federal Service",
+    role: "Software Engineer",
+    location: "Annapolis Junction, MD",
+    range: "Feb 2026 — Now",
+    yearLabel: "2026 — Now",
+    current: true,
+    body:
+      "Modernizing customized PeopleSoft platforms across production and non-production environments for a federal civilian agency. Shipping client-driven enhancements inside Agile sprint cycles, building AI-assisted Python tooling that meaningfully cuts manual-ops work, and translating stakeholder requirements into shippable deliverables — without losing the audit trail.",
+  },
+  {
+    company: "National Security Agency",
+    role: "Software Engineer",
+    location: "Fort Meade, MD",
+    range: "Sep 2024 — Feb 2026",
+    yearLabel: "2024 — 2026",
+    body:
+      "Delivered features on highly secured web applications using TypeScript, JavaScript, and React across multiple integrated products. Optimized TS and Python tooling on classified systems with agentic AI workflows, and stepped in to lead sprint planning during leadership gaps — shipping reliably in an environment where reliability isn't a feature, it's the mission.",
+  },
+  {
+    company: "CUNY Tech Prep",
+    role: "Software Engineering Fellow",
+    location: "Remote",
+    range: "Aug 2023 — May 2024",
+    yearLabel: "2023 — 2024",
+    body:
+      "Selected for a competitive industry program training top CUNY students in advanced web development. Built full-stack applications in React, Node, Express, and Postgres, and learned the way industry teams actually ship — version control, MVC, TDD, CI/CD — well before the first paid line of code.",
+  },
+  {
+    company: "Tempco Glass Fabrication",
+    role: "IT / Software Engineer Intern",
+    location: "Flushing, NY",
+    range: "Jun 2023 — Aug 2023",
+    yearLabel: "2023",
+    body:
+      "First professional role, on home turf in Flushing: rebuilt the company's website to drive a 35% lift in traffic, shipped a quota-management system in Airtable, PHP, and SQL, and partnered with the IT manager to tighten day-to-day web ops. Small shop, real users, fast feedback loop.",
   },
 ];
 
@@ -95,30 +145,40 @@ export default function Page() {
 
       <Hero />
 
-      <Section num="01" id="about" eyebrow="About" title="Builder at the intersection of AI, engineering, and product.">
+      <Section num="01" id="about" eyebrow="About" title="Software engineer at the intersection of AI and national security.">
         <div className="grid gap-6 md:grid-cols-3">
           <div className="glass p-6 md:col-span-2">
             <p className="text-base leading-relaxed text-ink-100/90">
-              I&apos;m <strong className="text-white">Arbab Ansari</strong> — a New York–based engineer
-              focused on shipping <em>applied AI</em>. I grew up writing code to chase product
-              ideas, studied CS at Queens College, and now spend my time turning model
-              capabilities into things that feel inevitable in a product surface: fast,
-              trustworthy, and quietly useful.
+              I&apos;m <strong className="text-white">Arbab Ansari</strong> — a software engineer based
+              in Washington, DC, with a track record of shipping secure, AI-augmented systems
+              across federal mission platforms, classified web applications, and the legacy
+              government tooling agencies actually rely on.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-100/80">
-              I move comfortably between the IC seat and the program-management seat —
-              writing the prototype on Monday, the eval harness on Wednesday, and the
-              rollout plan on Friday. I care about latency budgets, sharp interfaces,
-              and a small surface area you can actually maintain.
+              My career has taken me from a glass-fabrication IT shop in Flushing, to a
+              competitive engineering fellowship at CUNY Tech Prep, to delivering features on
+              highly secured web applications at the National Security Agency, and now to
+              Accenture Federal Service — where I modernize PeopleSoft platforms relied on
+              across a federal civilian agency. I hold an Active TS/SCI clearance with Full
+              Scope Polygraph, and I bring a rare combination of agentic AI-assisted
+              development and the discipline that comes from writing code where every change
+              is audited and reliability is the mission.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-ink-100/80">
+              I was born and raised in New York City and studied Computer Science at CUNY
+              Queens College. I now call Washington, DC home — closer to the agencies and
+              missions the work serves. Applied AI is the through-line: I use it daily in
+              production, and I&apos;m focused on what it takes to make it reliable, auditable,
+              and useful where the cost of a bad output is high.
             </p>
           </div>
           <div className="glass p-6">
             <p className="eyebrow">At a glance</p>
             <ul className="mt-4 space-y-3 text-sm">
-              <Stat label="Based in" value="New York, NY" />
-              <Stat label="Education" value="B.S. CS, Queens College &apos;23" />
-              <Stat label="Stack" value="TypeScript · Python · Next.js · LLM tooling" />
-              <Stat label="Working on" value="Applied AI · TPM workflows" />
+              <Stat label="Based in" value="Washington, DC · NYC native" />
+              <Stat label="Education" value="B.A. Computer Science, CUNY Queens College" />
+              <Stat label="Clearance" value="Active TS/SCI · Full Scope Polygraph" />
+              <Stat label="Stack" value="TypeScript · Python · React · AI-assisted dev" />
             </ul>
           </div>
         </div>
@@ -140,16 +200,25 @@ export default function Page() {
         </div>
       </Section>
 
-      <Section num="03" id="in-progress" eyebrow="In Progress" title="Currently building — open scaffolds, real roadmaps.">
+      <Section num="03" id="experience" eyebrow="Experience" title="From a Flushing IT shop to classified platforms at Fort Meade.">
         <p className="mb-10 max-w-3xl text-sm md:text-base leading-relaxed text-ink-100/80">
-          Two active projects I&apos;m scoping in public — one applied-AI build, one TPM-style
-          deep-dive. Repos are live; READMEs lay out the architecture, methodology, and a
-          versioned roadmap.
+          Four years of building production software in regulated, mission-critical
+          environments — full-stack web, AI-assisted tooling, and the modernization work
+          government agencies actually depend on.
+        </p>
+        <ExperienceTimeline items={EXPERIENCE} />
+      </Section>
+
+      <Section num="04" id="in-progress" eyebrow="In Progress" title="Currently building — open scaffolds, real roadmaps.">
+        <p className="mb-10 max-w-3xl text-sm md:text-base leading-relaxed text-ink-100/80">
+          Two active projects I&apos;m scoping in public — one applied-AI build, one
+          methodology deep-dive on LLM evals. Repos are live; READMEs lay out the
+          architecture, methodology, and a versioned roadmap.
         </p>
         <Timeline items={IN_PROGRESS} />
       </Section>
 
-      <Section num="04" id="projects" eyebrow="Selected Work" title="Shipping intelligent tools — from spec to production.">
+      <Section num="05" id="projects" eyebrow="Selected Work" title="Shipping intelligent tools — from spec to production.">
         <div className="grid gap-6 md:grid-cols-2">
           {PROJECTS.map((p) => (
             <ProjectCard key={p.name} project={p} />
@@ -157,11 +226,11 @@ export default function Page() {
         </div>
       </Section>
 
-      <Section num="05" id="contact" eyebrow="Contact" title="Let&apos;s build something.">
+      <Section num="06" id="contact" eyebrow="Contact" title="Let&apos;s build something.">
         <div className="glass p-8 md:p-10">
           <p className="text-base md:text-lg leading-relaxed text-ink-100/90 max-w-2xl">
-            If you&apos;re working on applied AI, model-powered product surfaces, or
-            need an engineer who can also drive the program — I&apos;d love to talk.
+            If you&apos;re hiring for secure software, AI-augmented engineering, or federal-mission
+            modernization — I&apos;d love to talk.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a className="btn btn-primary" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
@@ -180,7 +249,7 @@ export default function Page() {
       <footer className="px-6 md:px-10 pb-10 pt-2">
         <div className="mx-auto max-w-6xl border-t border-ink-300/10 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-ink-200/60">
           <p>© {new Date().getFullYear()} Arbab Ansari. Built with Next.js & Tailwind.</p>
-          <p>Designed in New York · Always learning.</p>
+          <p>Born in NYC · Built in DC · Always learning.</p>
         </div>
       </footer>
     </main>
@@ -193,6 +262,7 @@ function Nav() {
   const links = [
     { href: "#about", label: "About" },
     { href: "#focus", label: "Focus" },
+    { href: "#experience", label: "Experience" },
     { href: "#in-progress", label: "Now" },
     { href: "#projects", label: "Work" },
     { href: "#contact", label: "Contact" },
@@ -238,7 +308,7 @@ function Hero() {
   return (
     <section id="top" className="relative px-6 md:px-10 pt-16 pb-28 md:pt-24 md:pb-36">
       <div className="mx-auto max-w-6xl">
-        <p className="eyebrow rise">Applied AI · AI Software Engineer · TPM</p>
+        <p className="eyebrow rise">Software Engineer · Applied AI · National Security</p>
         <h1 className="rise mt-8 font-bold tracking-tight leading-[0.92] text-[clamp(3.25rem,12vw,9rem)]">
           <span className="block">Arbab</span>
           <span className="block">
@@ -247,25 +317,26 @@ function Hero() {
           </span>
         </h1>
         <p className="fade mt-8 max-w-3xl text-xl md:text-2xl text-white/95 font-medium leading-snug tracking-tight">
-          Building intelligent products that actually ship.
+          Building at the intersection of software, AI, and national security.
         </p>
         <p className="fade mt-4 max-w-2xl text-base md:text-lg text-ink-100/80 leading-relaxed">
-          I design, build, and ship AI-powered products — sitting between engineering,
-          model behavior, and program delivery so the right thing actually makes it to users.
+          From CUNY classrooms in Queens to classified web platforms at the NSA — engineering
+          software where reliability isn&apos;t a feature, it&apos;s the mission. Born and raised in NYC,
+          now based in Washington, DC.
         </p>
         <div className="fade mt-8 flex flex-wrap gap-3">
-          <a className="btn btn-primary" href="#projects">See selected work</a>
+          <a className="btn btn-primary" href="#experience">See experience</a>
           <a className="btn btn-ghost" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
             LinkedIn ↗
           </a>
         </div>
         <div className="fade mt-12 flex flex-wrap gap-2">
-          <span className="chip">LLM Apps</span>
-          <span className="chip">Retrieval & Eval</span>
-          <span className="chip">Next.js / TypeScript</span>
+          <span className="chip">TypeScript</span>
           <span className="chip">Python</span>
-          <span className="chip">Roadmapping</span>
-          <span className="chip">Stakeholder Alignment</span>
+          <span className="chip">React</span>
+          <span className="chip">AI-Assisted Dev</span>
+          <span className="chip">TS/SCI · Full Scope Poly</span>
+          <span className="chip">Federal Mission Systems</span>
         </div>
       </div>
     </section>
@@ -343,34 +414,93 @@ function ProjectCard({ project: p, hideStatus = false }: { project: Project; hid
   );
 }
 
-function Timeline({ items }: { items: Project[] }) {
+function TimelineRail({ children }: { children: React.ReactNode }) {
   return (
     <ol className="relative">
-      {/* vertical rail */}
       <div
         className="absolute top-2 bottom-2 w-px bg-gradient-to-b from-ink-300/10 via-ink-300/30 to-ink-300/10 left-[3.75rem] sm:left-[6rem]"
         aria-hidden
       />
-      {items.map((p) => (
-        <li key={p.name} className="relative pl-20 sm:pl-32 pb-10 last:pb-0">
-          {/* left rail label */}
-          <div className="absolute left-0 top-7 w-12 sm:w-20 text-right">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-ink-300/80">
-              Now
-            </span>
-          </div>
-          {/* dot on rail */}
-          <span
-            className="absolute top-[1.85rem] flex h-3 w-3 -translate-x-1/2 left-[3.75rem] sm:left-[6rem]"
-            aria-hidden
-          >
-            <span className="absolute inline-flex h-full w-full rounded-full bg-ink-300 opacity-60 animate-ping" />
-            <span className="relative inline-flex h-3 w-3 rounded-full bg-ink-200 ring-4 ring-ink-950" />
-          </span>
-          <ProjectCard project={p} hideStatus />
-        </li>
-      ))}
+      {children}
     </ol>
+  );
+}
+
+function TimelineItem({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <li className="relative pl-20 sm:pl-32 pb-10 last:pb-0">
+      <div className="absolute left-0 top-7 w-14 sm:w-20 text-right">
+        <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-ink-300/80 break-words">
+          {label}
+        </span>
+      </div>
+      <span
+        className="absolute top-[1.85rem] flex h-3 w-3 -translate-x-1/2 left-[3.75rem] sm:left-[6rem]"
+        aria-hidden
+      >
+        <span className="absolute inline-flex h-full w-full rounded-full bg-ink-300 opacity-60 animate-ping" />
+        <span className="relative inline-flex h-3 w-3 rounded-full bg-ink-200 ring-4 ring-ink-950" />
+      </span>
+      {children}
+    </li>
+  );
+}
+
+function Timeline({ items }: { items: Project[] }) {
+  return (
+    <TimelineRail>
+      {items.map((p) => (
+        <TimelineItem key={p.name} label="Now">
+          <ProjectCard project={p} hideStatus />
+        </TimelineItem>
+      ))}
+    </TimelineRail>
+  );
+}
+
+function ExperienceTimeline({ items }: { items: Experience[] }) {
+  return (
+    <TimelineRail>
+      {items.map((e) => (
+        <TimelineItem key={`${e.company}-${e.range}`} label={e.yearLabel}>
+          <ExperienceCard item={e} />
+        </TimelineItem>
+      ))}
+    </TimelineRail>
+  );
+}
+
+function ExperienceCard({ item }: { item: Experience }) {
+  return (
+    <article className="glass p-6 flex flex-col">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <h3 className="text-xl font-semibold text-white break-words">{item.company}</h3>
+          <p className="mt-1 text-sm text-ink-100/85 break-words">
+            {item.role} <span className="text-ink-300/60">·</span> {item.location}
+          </p>
+        </div>
+        {item.current && (
+          <span className="shrink-0 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-ink-200/90 rounded-full bg-ink-700/40 border border-ink-300/30 px-2.5 py-1">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-ink-300 opacity-75 animate-ping" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-ink-200" />
+            </span>
+            Current
+          </span>
+        )}
+      </div>
+      <p className="mt-2 font-mono text-[11px] tracking-[0.18em] uppercase text-ink-300/70 break-words">
+        {item.range}
+      </p>
+      <p className="mt-4 text-sm leading-relaxed text-ink-100/85">{item.body}</p>
+    </article>
   );
 }
 
