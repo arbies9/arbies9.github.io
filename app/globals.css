@@ -75,12 +75,15 @@
   color: transparent;
   animation: shimmer 6s linear infinite;
 }
+.shimmer-text.is-paused {
+  animation-play-state: paused;
+}
 
 .glass {
-  background: linear-gradient(160deg, rgba(30, 58, 138, 0.35), rgba(15, 23, 42, 0.55));
+  background: linear-gradient(160deg, rgba(30, 58, 138, 0.45), rgba(15, 23, 42, 0.7));
   border: 1px solid rgba(147, 197, 253, 0.18);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-radius: 1rem;
   transition: transform 0.4s cubic-bezier(.2,.7,.2,1), border-color 0.4s, box-shadow 0.4s;
   /* containment guarantees */
@@ -160,9 +163,17 @@
   width: 520px;
   height: 520px;
   border-radius: 9999px;
-  filter: blur(80px);
-  opacity: 0.5;
+  filter: blur(60px);
+  opacity: 0.4;
   pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Lazy-render off-screen sections to skip paint/layout work while scrolling */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 /* Respect reduced motion */

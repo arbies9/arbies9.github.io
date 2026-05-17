@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 const GITHUB_URL = "https://github.com/arbies9";
 const LINKEDIN_URL = "https://www.linkedin.com/in/arbab-a-6a97a0144";
@@ -221,6 +224,17 @@ function Nav() {
 }
 
 function Hero() {
+  const shimmerRef = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = shimmerRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => el.classList.toggle("is-paused", !entry.isIntersecting),
+      { threshold: 0 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   return (
     <section id="top" className="relative px-6 md:px-10 pt-16 pb-28 md:pt-24 md:pb-36">
       <div className="mx-auto max-w-6xl">
@@ -228,7 +242,7 @@ function Hero() {
         <h1 className="rise mt-8 font-bold tracking-tight leading-[0.92] text-[clamp(3.25rem,12vw,9rem)]">
           <span className="block">Arbab</span>
           <span className="block">
-            <span className="shimmer-text">Ansari</span>
+            <span ref={shimmerRef} className="shimmer-text">Ansari</span>
             <span className="text-ink-400">.</span>
           </span>
         </h1>
@@ -272,7 +286,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="relative px-6 md:px-10 py-20 md:py-28">
+    <section id={id} className="cv-auto relative px-6 md:px-10 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         {num && (
           <p className="mb-3 font-mono text-xs sm:text-sm tracking-[0.2em] text-ink-300/60">
