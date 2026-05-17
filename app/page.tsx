@@ -145,24 +145,25 @@ export default function Page() {
 
       <Hero />
 
-      <Section num="01" id="about" eyebrow="About" title="Software engineer at the intersection of AI and national security.">
+      <Section num="01" id="about" eyebrow="About" title="Federal software engineer at the intersection of AI and national security.">
         <div className="grid gap-6 md:grid-cols-3">
           <div className="glass p-6 md:col-span-2">
             <p className="text-base leading-relaxed text-ink-100/90">
               I&apos;m <strong className="text-white">Arbab Ansari</strong> — a software engineer based
-              in Washington, DC, with a track record of shipping secure, AI-augmented systems
-              across federal mission platforms, classified web applications, and the legacy
-              government tooling agencies actually rely on.
+              in Washington, DC, building software for the U.S. federal government. I&apos;m
+              currently at <strong className="text-white">Accenture Federal Service</strong>,
+              partnering with federal civilian agencies on AI-augmented modernization work
+              — after delivering features on classified web platforms at the{" "}
+              <strong className="text-white">National Security Agency</strong>.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-100/80">
-              My career has taken me from a glass-fabrication IT shop in Flushing, to a
-              competitive engineering fellowship at CUNY Tech Prep, to delivering features on
-              highly secured web applications at the National Security Agency, and now to
-              Accenture Federal Service — where I modernize PeopleSoft platforms relied on
-              across a federal civilian agency. I hold an Active TS/SCI clearance with Full
-              Scope Polygraph, and I bring a rare combination of agentic AI-assisted
-              development and the discipline that comes from writing code where every change
-              is audited and reliability is the mission.
+              My path here started in a glass-fabrication IT shop in Flushing and ran
+              through a competitive engineering fellowship at CUNY Tech Prep before landing
+              in the cleared federal-engineering world. I hold an{" "}
+              <strong className="text-white">Active TS/SCI clearance with Full Scope Polygraph</strong>,
+              and I bring a rare combination of agentic AI-assisted development and the
+              discipline that comes from writing code where every change is audited and
+              reliability is the mission.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-100/80">
               I was born and raised in New York City and studied Computer Science at CUNY
@@ -176,9 +177,10 @@ export default function Page() {
             <p className="eyebrow">At a glance</p>
             <ul className="mt-4 space-y-3 text-sm">
               <Stat label="Based in" value="Washington, DC · NYC native" />
-              <Stat label="Education" value="B.A. Computer Science, CUNY Queens College" />
+              <Stat label="Currently" value="Engineer at Accenture Federal Service" />
+              <Stat label="Previously" value="Engineer at the National Security Agency" />
               <Stat label="Clearance" value="Active TS/SCI · Full Scope Polygraph" />
-              <Stat label="Stack" value="TypeScript · Python · React · AI-assisted dev" />
+              <Stat label="Education" value="B.A. Computer Science, CUNY Queens College" />
             </ul>
           </div>
         </div>
@@ -200,11 +202,12 @@ export default function Page() {
         </div>
       </Section>
 
-      <Section num="03" id="experience" eyebrow="Experience" title="From a Flushing IT shop to classified platforms at Fort Meade.">
+      <Section num="03" id="experience" eyebrow="Experience" title="From Fort Meade to Accenture Federal Service — building software for the U.S. government.">
         <p className="mb-10 max-w-3xl text-sm md:text-base leading-relaxed text-ink-100/80">
-          Four years of building production software in regulated, mission-critical
-          environments — full-stack web, AI-assisted tooling, and the modernization work
-          government agencies actually depend on.
+          Four years of writing production software in regulated, mission-critical federal
+          environments — classified web platforms at the National Security Agency, then
+          AI-augmented modernization for federal civilian clients at Accenture Federal
+          Service.
         </p>
         <ExperienceTimeline items={EXPERIENCE} />
       </Section>
@@ -308,7 +311,7 @@ function Hero() {
   return (
     <section id="top" className="relative px-6 md:px-10 pt-16 pb-28 md:pt-24 md:pb-36">
       <div className="mx-auto max-w-6xl">
-        <p className="eyebrow rise">Software Engineer · Applied AI · National Security</p>
+        <p className="eyebrow rise">Federal Software Engineer · Applied AI · National Security</p>
         <h1 className="rise mt-8 font-bold tracking-tight leading-[0.92] text-[clamp(3.25rem,12vw,9rem)]">
           <span className="block">Arbab</span>
           <span className="block">
@@ -320,9 +323,11 @@ function Hero() {
           Building at the intersection of software, AI, and national security.
         </p>
         <p className="fade mt-4 max-w-2xl text-base md:text-lg text-ink-100/80 leading-relaxed">
-          From CUNY classrooms in Queens to classified web platforms at the NSA — engineering
-          software where reliability isn&apos;t a feature, it&apos;s the mission. Born and raised in NYC,
-          now based in Washington, DC.
+          From CUNY classrooms in Queens to classified platforms at the
+          <strong className="text-white"> National Security Agency</strong> and federal-civilian
+          modernization at <strong className="text-white">Accenture Federal Service</strong> —
+          engineering software for the U.S. government where reliability isn&apos;t a feature,
+          it&apos;s the mission. Born and raised in NYC, now based in Washington, DC.
         </p>
         <div className="fade mt-8 flex flex-wrap gap-3">
           <a className="btn btn-primary" href="#experience">See experience</a>
@@ -336,7 +341,7 @@ function Hero() {
           <span className="chip">React</span>
           <span className="chip">AI-Assisted Dev</span>
           <span className="chip">TS/SCI · Full Scope Poly</span>
-          <span className="chip">Federal Mission Systems</span>
+          <span className="chip">Federal Government Contractor</span>
         </div>
       </div>
     </section>
