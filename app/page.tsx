@@ -92,7 +92,7 @@ export default function Page() {
 
       <Hero />
 
-      <Section id="about" eyebrow="About" title="Builder at the intersection of AI, engineering, and product.">
+      <Section num="01" id="about" eyebrow="About" title="Builder at the intersection of AI, engineering, and product.">
         <div className="grid gap-6 md:grid-cols-3">
           <div className="glass p-6 md:col-span-2">
             <p className="text-base leading-relaxed text-ink-100/90">
@@ -121,7 +121,7 @@ export default function Page() {
         </div>
       </Section>
 
-      <Section id="focus" eyebrow="Focus" title="Three lenses on the same problem: making intelligent products actually work.">
+      <Section num="02" id="focus" eyebrow="Focus" title="Three lenses on the same problem: making intelligent products actually work.">
         <div className="grid gap-6 md:grid-cols-3">
           {FOCUS.map((f) => (
             <div key={f.title} className="glass p-6 group">
@@ -137,20 +137,16 @@ export default function Page() {
         </div>
       </Section>
 
-      <Section id="in-progress" eyebrow="In Progress" title="Currently building — open scaffolds, real roadmaps.">
-        <p className="mb-8 max-w-3xl text-sm md:text-base leading-relaxed text-ink-100/80">
+      <Section num="03" id="in-progress" eyebrow="In Progress" title="Currently building — open scaffolds, real roadmaps.">
+        <p className="mb-10 max-w-3xl text-sm md:text-base leading-relaxed text-ink-100/80">
           Two active projects I&apos;m scoping in public — one applied-AI build, one TPM-style
           deep-dive. Repos are live; READMEs lay out the architecture, methodology, and a
           versioned roadmap.
         </p>
-        <div className="grid gap-6 md:grid-cols-2">
-          {IN_PROGRESS.map((p) => (
-            <ProjectCard key={p.name} project={p} />
-          ))}
-        </div>
+        <Timeline items={IN_PROGRESS} />
       </Section>
 
-      <Section id="projects" eyebrow="Selected Work" title="Shipping intelligent tools — from spec to production.">
+      <Section num="04" id="projects" eyebrow="Selected Work" title="Shipping intelligent tools — from spec to production.">
         <div className="grid gap-6 md:grid-cols-2">
           {PROJECTS.map((p) => (
             <ProjectCard key={p.name} project={p} />
@@ -158,7 +154,7 @@ export default function Page() {
         </div>
       </Section>
 
-      <Section id="contact" eyebrow="Contact" title="Let&apos;s build something.">
+      <Section num="05" id="contact" eyebrow="Contact" title="Let&apos;s build something.">
         <div className="glass p-8 md:p-10">
           <p className="text-base md:text-lg leading-relaxed text-ink-100/90 max-w-2xl">
             If you&apos;re working on applied AI, model-powered product surfaces, or
@@ -226,18 +222,22 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="top" className="relative px-6 md:px-10 pt-20 pb-28 md:pt-28 md:pb-36">
+    <section id="top" className="relative px-6 md:px-10 pt-16 pb-28 md:pt-24 md:pb-36">
       <div className="mx-auto max-w-6xl">
         <p className="eyebrow rise">Applied AI · AI Software Engineer · TPM</p>
-        <h1 className="rise mt-6 text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] max-w-4xl">
-          Building <span className="shimmer-text">intelligent</span> products
-          <br className="hidden sm:block" />
-          that actually ship.
+        <h1 className="rise mt-8 font-bold tracking-tight leading-[0.92] text-[clamp(3.25rem,12vw,9rem)]">
+          <span className="block">Arbab</span>
+          <span className="block">
+            <span className="shimmer-text">Ansari</span>
+            <span className="text-ink-400">.</span>
+          </span>
         </h1>
-        <p className="fade mt-6 max-w-2xl text-base md:text-lg text-ink-100/85 leading-relaxed">
-          Hi, I&apos;m <strong className="text-white">Arbab</strong>. I design, build, and ship
-          AI-powered products — sitting between engineering, model behavior, and program
-          delivery so the right thing actually makes it to users.
+        <p className="fade mt-8 max-w-3xl text-xl md:text-2xl text-white/95 font-medium leading-snug tracking-tight">
+          Building intelligent products that actually ship.
+        </p>
+        <p className="fade mt-4 max-w-2xl text-base md:text-lg text-ink-100/80 leading-relaxed">
+          I design, build, and ship AI-powered products — sitting between engineering,
+          model behavior, and program delivery so the right thing actually makes it to users.
         </p>
         <div className="fade mt-8 flex flex-wrap gap-3">
           <a className="btn btn-primary" href="#projects">See selected work</a>
@@ -260,11 +260,13 @@ function Hero() {
 
 function Section({
   id,
+  num,
   eyebrow,
   title,
   children,
 }: {
   id: string;
+  num?: string;
   eyebrow: string;
   title: string;
   children: React.ReactNode;
@@ -272,6 +274,11 @@ function Section({
   return (
     <section id={id} className="relative px-6 md:px-10 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
+        {num && (
+          <p className="mb-3 font-mono text-xs sm:text-sm tracking-[0.2em] text-ink-300/60">
+            — {num}
+          </p>
+        )}
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight max-w-3xl leading-tight">
           {title}
@@ -282,7 +289,7 @@ function Section({
   );
 }
 
-function ProjectCard({ project: p }: { project: Project }) {
+function ProjectCard({ project: p, hideStatus = false }: { project: Project; hideStatus?: boolean }) {
   return (
     <article
       className={`glass p-6 flex flex-col ${p.highlight ? "md:col-span-1" : "md:col-span-2"}`}
@@ -290,7 +297,7 @@ function ProjectCard({ project: p }: { project: Project }) {
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
           <h3 className="text-xl font-semibold text-white break-words">{p.name}</h3>
-          {p.status === "In Progress" && (
+          {!hideStatus && p.status === "In Progress" && (
             <span className="mt-2 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-ink-200/90 rounded-full bg-ink-700/40 border border-ink-300/30 px-2.5 py-1">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-ink-300 opacity-75 animate-ping" />
@@ -319,6 +326,37 @@ function ProjectCard({ project: p }: { project: Project }) {
         ))}
       </div>
     </article>
+  );
+}
+
+function Timeline({ items }: { items: Project[] }) {
+  return (
+    <ol className="relative">
+      {/* vertical rail */}
+      <div
+        className="absolute top-2 bottom-2 w-px bg-gradient-to-b from-ink-300/10 via-ink-300/30 to-ink-300/10 left-[3.75rem] sm:left-[6rem]"
+        aria-hidden
+      />
+      {items.map((p) => (
+        <li key={p.name} className="relative pl-20 sm:pl-32 pb-10 last:pb-0">
+          {/* left rail label */}
+          <div className="absolute left-0 top-7 w-12 sm:w-20 text-right">
+            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-ink-300/80">
+              Now
+            </span>
+          </div>
+          {/* dot on rail */}
+          <span
+            className="absolute top-[1.85rem] flex h-3 w-3 -translate-x-1/2 left-[3.75rem] sm:left-[6rem]"
+            aria-hidden
+          >
+            <span className="absolute inline-flex h-full w-full rounded-full bg-ink-300 opacity-60 animate-ping" />
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-ink-200 ring-4 ring-ink-950" />
+          </span>
+          <ProjectCard project={p} hideStatus />
+        </li>
+      ))}
+    </ol>
   );
 }
 
